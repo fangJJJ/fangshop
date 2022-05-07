@@ -16,13 +16,13 @@
 		<div class="collapse navbar-collapse" id="vueTemplate">
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="/shop/Index.do">HOME</a>
+					<a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/Index.do">HOME</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/shop/product/productList.do">PRODUCT</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/product/productList.do">PRODUCT</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/shop/cart/goCartPage.do">
+					<a class="nav-link" href="${pageContext.request.contextPath}/cart/goCartPage.do">
 						CART 
 						<span id="cartQty"> 
 						<%if(CommonUtil.getCartSession(session) != null){ %>
@@ -33,14 +33,14 @@
 				</li>
 				<%if(CommonUtil.getCurrentMember(session) == null){ %>
 				<li class="nav-item">
-					<a class="nav-link" href="/shop/member/doLogin.do">LOGIN</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/member/doLogin.do">LOGIN</a>
 				</li>
 				<%}else{%>
 				<li class="nav-item">
-					<a class="nav-link" href="/shop/order/goOrderListPage.do">ORDER</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/order/goOrderListPage.do">ORDER</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/shop/member/logout.do">LOGOUT</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/member/logout.do">LOGOUT</a>
 				</li>
 				<%}%>
 			</ul>

@@ -51,7 +51,7 @@ const vm = new Vue({
 	methods:{
 		getProductListByCategory: function(categoryid, pageNum) {
 			this.categoryid = categoryid;
-			axios.post('/shop/product/ajaxProductListByCategoryPage.do?categoryid='+categoryid+'&pageNum='+pageNum)
+			axios.post('${pageContext.request.contextPath}/product/ajaxProductListByCategoryPage.do?categoryid='+categoryid+'&pageNum='+pageNum)
 			.then(response => {
 				this.allProductList = response.data.result.list;
 		    	this.pages = response.data.result.pages;
@@ -61,7 +61,7 @@ const vm = new Vue({
 		  	});
 		},
 		getCategoryList(){
-			axios.post('/shop/product/ajaxCategoryList.do')
+			axios.post('${pageContext.request.contextPath}/product/ajaxCategoryList.do')
 	 		.then(response => {
 	 	    	this.categoryList = response.data.result;
 	 	  	})
@@ -70,7 +70,7 @@ const vm = new Vue({
 	 	  	});
 		},
 		getProduct: function(prodid) {
-			window.location.href='/shop/product/getProduct.do?prodid='+prodid;
+			window.location.href='${pageContext.request.contextPath}/product/getProduct.do?prodid='+prodid;
 		}
 	}
 });

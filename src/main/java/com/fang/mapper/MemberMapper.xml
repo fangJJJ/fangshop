@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace繫結DAO介面，當繫結一個介面就不用寫此介面的實現類，
+	 會通過介面的完整路徑找到對應的mapper配置來執行SQL語句
+	 所以namespace的命名必須要寫介面的完整路徑 -->
+<mapper namespace="com.fang.dao.MemberDAO">
+
+	<resultMap id="memberResultMap" type="Member">
+		<result column="memnum" property="memNum" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+		<result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="selectMemberByEmail" resultMap="memberResultMap" parameterType="String">
+		select * from member where email=#{email}
+	</select> 
+ 	
+ 	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="memNum">
+ 		insert into member 
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name != null">
+ 				name,
+ 			</if>
+ 			<if test="email != null">
+ 				email,
+ 			</if>
+ 			<if test="password != null">
+ 				password,
+ 			</if>
+ 			<if test="mobile != null">
+ 				mobile,
+ 			</if>
+ 			<if test="registerTime != null">
+ 				register_time,
+ 			</if>
+ 			<if test="loginTime != null">
+ 				login_time,
+ 			</if>
+ 			<if test="updateTime != null">
+ 				update_time
+ 			</if>
+ 		</trim>
+ 		values 
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name != null">
+ 				#{name},
+ 			</if>
+ 			<if test="email != null">
+ 				#{email},
+ 			</if>
+ 			<if test="password != null">
+ 				#{password},
+ 			</if>
+ 			<if test="mobile != null">
+ 				#{mobile},
+ 			</if>
+ 			<if test="registerTime != null">
+ 				#{registerTime,jdbcType=TIMESTAMP},
+ 			</if>
+ 			<if test="loginTime != null">
+ 				#{loginTime,jdbcType=TIMESTAMP},
+ 			</if>
+ 			<if test="updateTime != null">
+ 				#{updateTime,jdbcType=TIMESTAMP}
+ 			</if>
+ 		</trim>
+ 	</insert>
+ 	
+ 	<select id="selectMemberByEmailAndPassword" resultMap="memberResultMap" parameterType="Member">
+		select * from member where email=#{email} and password=#{password}
+	</select> 
+	
+	<update id="updateMemberByPrimaryKey" parameterType="Member">  
+	    UPDATE member  
+	    <trim prefix="SET" suffixOverrides=",">  
+	        <if test="name != null and name != '' ">  
+	            name = #{name},  
+	        </if>  
+	        <if test="email != null and email != '' ">  
+	            email = #{email},  
+	        </if>  
+	        <if test="password != null and password != '' ">  
+	            password = #{password},  
+	        </if> 
+	        <if test="registerTime != null">  
+	            register_time = #{registerTime,jdbcType=TIMESTAMP},  
+	        </if> 
+	        <if test="loginTime != null">  
+	            login_time = #{loginTime,jdbcType=TIMESTAMP},  
+	        </if> 
+	        <if test="updateTime != null">  
+	            update_time = #{updateTime,jdbcType=TIMESTAMP} 
+	        </if> 
+	    </trim>  
+	    WHERE memnum = #{memNum}  
+	</update>
+</mapper>

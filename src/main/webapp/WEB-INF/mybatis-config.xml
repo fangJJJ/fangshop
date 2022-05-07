@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- package標籤配置一個包名，mybatis會掃描model以下所有類別，
+			 並註冊別名供mapper.xml的type使用 -->
+		<package name="com.fang.model" />
+	</typeAliases>
+	<plugins>
+	    <!-- com.github.pagehelper -->
+	    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+	    	<!-- 設置數據庫類型 -->
+	        <property name="helperDialect" value="mysql"/>
+		</plugin>
+	</plugins>
+</configuration>

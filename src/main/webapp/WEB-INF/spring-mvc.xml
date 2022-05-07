@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!-- 啓用spring mvc 註解 -->
+	<context:annotation-config />
+   
+    <!-- 對web包中的所有類進行掃描，以完成Bean創建和自動依賴注入的功能 -->
+    <context:component-scan base-package="com.fang.controller"></context:component-scan>
+    
+	<!-- 對模型視圖名稱的解析，即在模型視圖名稱添加前后缀 -->
+    <!-- 改導入Tiles
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+    -->
+    
+    <!-- 導入Tiles切版 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles-defs.xml</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<!-- 上傳檔案處理器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+	<mvc:annotation-driven validator="validator" />
+	<!-- Bean Validation -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	
+	<!-- 攔截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/cart/goCheckOutPage.do"/>
+			<mvc:mapping path="/cart/saveOrder.do"/>
+			<mvc:mapping path="/order/**"/>
+			<!-- 登入攔截器-->
+			<bean class="com.fang.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+	    	<mvc:mapping path="/**"/>
+	        <bean class="com.fang.interceptor.ReponseInterceptor"/>
+	    </mvc:interceptor>
+	</mvc:interceptors>
+</beans>

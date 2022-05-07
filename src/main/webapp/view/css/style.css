@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+main {
+  margin-bottom: 10vh;
+  margin-top: 15vh;
+}
+
+/***********************************************************************************************/
+/* header */
+/***********************************************************************************************/
+header {
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  background-color: white;
+}
+
+
+header a{
+	font-family: 'Raleway', sans-serif;
+}
+
+
+header.container{
+	padding:0 24px 0 0;
+}
+
+.navbar{
+	margin: 0 5%;
+}
+
+.navbar-brand{
+	font-size:28px;
+} 
+
+.navbar-brand span{
+    color: #e99c2e;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #060606;
+    padding: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #e99c2e;
+}
+
+
+/************************/
+/* body */
+/************************/
+.card span a{
+	color: #e99c2e;
+}
+
+.card button{
+	background-color: #e99c2e;
+	color: #060606;
+	border: none;
+	width: 45%;
+}
+
+.card button:hover{
+	background-color: #e99c2e;
+	color: #060606;
+	border: none;
+	width: 45%;
+}
+
+#errorPage img{
+	max-width:70%;
+	max-height:70%;
+}
+
+.card .btn {
+	  width: 45%;
+	  padding: 12px;
+	  border: none;
+	  border-radius: 4px;
+	  margin: 5px 0;
+	  opacity: 0.85;
+	  display: inline-block;
+	  font-size: 17px;
+	  line-height: 20px;
+	  text-decoration: none; /* remove underline from anchors */
+}
+
+#vueProductArea .btn {
+	  width: 45%;
+	  padding: 12px;
+	  border: none;
+	  border-radius: 4px;
+	  margin: 5px 0;
+	  opacity: 0.85;
+	  display: inline-block;
+	  font-size: 17px;
+	  line-height: 20px;
+	  text-decoration: none; /* remove underline from anchors */
+}
+
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.fb:hover {
+  opacity: 1;
+  color: white;
+}
+
+/* productList.jsp */
+.categoryNav a{
+  padding: 12px 24px;
+  margin: 0 16px;
+  color: #060606;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  text-align: center;
+  transition: filter 200ms linear 0s;
+  font-family: 'Raleway', sans-serif;
+}
+.categoryNav #all {
+  border-top: none;
+}
+.categoryNav a:hover,a:focus{
+  color: #e99c2e;
+}
+
+.product{
+	width:90%;
+	max-height:40%;
+	margin-bottom:5%;
+}
+
+.product:hover{
+	background-color:#E0E0E0;
+	opacity:0.9;
+ 	z-index:2;
+	cursor:pointer;
+}
+
+.product img{
+	max-width:100%;
+	height:auto;
+}
+
+.info{
+  	padding:5%;
+  	width:100%;
+  	max-height:28%;
+}
+
+/* product.jsp */
+.description{
+	margin-top:5%;
+	padding-bottom:5%;
+	border-bottom:1px solid lightgray;
+}
+.price{
+	margin-top:5%;
+	font-size:20pt;
+}
+.qty input[type=number]{
+	width:20%;
+	height:30%;
+	font-size:15pt;
+}
+.qty{
+	margin-top:3%;
+	font-size:16pt;
+}
+.productBtn{
+	background-color: #e99c2e;
+	color: #060606;
+	border: none;
+	width: 45%;
+}
+.productDisabledBtn{
+	background-color: gray;
+	color: #060606;
+	border: none;
+	width: 45%;
+}
+.productPic{
+	text-align:center;
+}
+.productPic img{
+	max-width:80%;
+}
+
+/* cart.jsp */
+.cartBtn{
+	background-color: #e99c2e;
+	color: #060606;
+	border: none;
+	width: 15%;
+}
+.totalAmount{
+	display: inline-block;
+	margin-right: 3%;
+}
+#vueCartArea input:read-only {
+    background-color: white;
+    text-align: center;
+}
+
+/* checkout.jsp */
+.checkOutBtn{
+	background-color: #e99c2e;
+	color: #060606;
+	border: none;
+	width: 70%;
+	display: block;
+ 	margin:10% auto; 
+}
+#checkOutForm label{
+	margin-top:3%;
+}
+
+/* finish.jsp */
+
+/************************/
+/* Footer */
+/************************/
+.footer {
+    background: #f8f9fd;
+}
+
+.footer a{
+	color: #e99c2e;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.footer i{
+	color: #a4aaaf; 
+    margin: 0 18px 24px 0;
+    -webkit-transition: .3s; 
+    -moz-transition:.3s; 
+    -ms-transition:.3s; 
+    -o-transition:.3s;
+    transition: .3s;
+    font-size:24px;
+}
+
+.footer i:hover{
+	color: #e99c2e;
+}
+
+.footer p{
+    color: #a5adb3;
+    font-size: 14px;
+    font-weight: 400;
+}

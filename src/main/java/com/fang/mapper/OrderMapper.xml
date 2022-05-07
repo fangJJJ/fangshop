@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fang.dao.OrderDAO">
+
+	<resultMap id="orderResultMap" type="Order">
+		<result column="ordnum" property="ordnum" jdbcType="INTEGER" />
+		<result column="ordid" property="ordid" jdbcType="VARCHAR" />
+		<result column="createdate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="memnum" property="memNum" jdbcType="BIGINT" />
+		<result column="receivername" property="receiverName" jdbcType="VARCHAR" />
+		<result column="receiverphone" property="receiverPhone" jdbcType="VARCHAR" />
+		<result column="receiveraddress" property="receiverAddress" jdbcType="VARCHAR" />
+		<result column="totalamount" property="totalAmount" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="ordnum"> 
+		insert into `order` (ordid, createdate, memnum, receivername, receiverphone, receiveraddress, totalamount) 
+		values (#{ordid}, #{createDate}, #{memNum}, #{receiverName}, #{receiverPhone}, #{receiverAddress}, #{totalAmount})
+	</insert>
+	
+	<!-- AUTO_INCREMENT是cache, 所以不一定能得到最新的ordnum -->
+	<select id="selectNextOrdnum" resultType="INTEGER">
+		SELECT `AUTO_INCREMENT`
+		FROM   INFORMATION_SCHEMA.TABLES
+		WHERE  TABLE_SCHEMA = 'shopdb'
+		AND    TABLE_NAME   = 'order'
+	</select>
+	
+	<select id="selectOrderByPrimaryKey" resultMap="orderResultMap" parameterType="INTEGER">
+    	select * from order where ordnum = #{ordnum}
+ 	</select>
+ 	
+ 	<resultMap id="orderWithItemsResultMap" type="Order">
+		<id column="ordnum" property="ordnum" jdbcType="INTEGER" />
+		<result column="ordid" property="ordid" jdbcType="VARCHAR" />
+		<result column="createdate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="memnum" property="memNum" jdbcType="BIGINT" />
+		<result column="receivername" property="receiverName" jdbcType="VARCHAR" />
+		<result column="receiverphone" property="receiverPhone" jdbcType="VARCHAR" />
+		<result column="receiveraddress" property="receiverAddress" jdbcType="VARCHAR" />
+		<result column="totalamount" property="totalAmount" jdbcType="INTEGER" />
+		<collection property="items" ofType="OrderItem">
+			<result property="ordnum" column="ordnum" jdbcType="INTEGER" />
+		    <result column="prodid" property="prodid" jdbcType="INTEGER" />
+			<result column="prodname" property="prodName" jdbcType="VARCHAR" />
+			<result column="price" property="price" jdbcType="INTEGER" />
+			<result column="qty" property="qty" jdbcType="INTEGER" />
+			<result column="amount" property="amount" jdbcType="INTEGER" />
+		</collection>
+	</resultMap>
+	
+	<select id="selectOrderWithItemsByMemnum" resultMap="orderWithItemsResultMap" parameterType="java.lang.Long">
+    	select * from `order` o
+		join orderitem item on o.ordnum = item.ordnum
+		where o.memnum = #{memnum}
+		order by o.createdate DESC
+ 	</select>
+ 	
+</mapper>

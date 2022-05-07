@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fang.dao.ProductDAO">
+
+	<resultMap id="productResultMap" type="Product">
+		<result column="prodid" property="prodid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="begindate" property="begindate" jdbcType="TIMESTAMP" />
+		<result column="enddate" property="enddate" jdbcType="TIMESTAMP" />
+		<result column="stock" property="stock" jdbcType="INTEGER" />
+		<result column="categoryid" property="categoryid" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+		<result column="picurl" property="picurl" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="selectAllProduct" resultMap="productResultMap">
+    	select * from product order by createtime DESC
+ 	</select> 
+	
+	<select id="selectAllOnSaleProduct" resultMap="productResultMap">
+    	select * from product where current_timestamp() between begindate and enddate
+ 	</select> 
+
+	<select id="selectProductByCategoryid" resultMap="productResultMap" parameterType="INTEGER">
+    	select * from product where 
+   		<if test="categoryid != null and categoryid != 0"> 
+   			categoryid = #{categoryid} and 
+   		</if>
+    	current_timestamp() between begindate and enddate
+ 	</select> 
+	
+	<select id="selectProductByProdid" resultMap="productResultMap" parameterType="INTEGER">
+    	select * from product where prodid = #{prodid}
+ 	</select> 
+ 	
+ 	<select id="selectOnSaleProductByProdid" resultMap="productResultMap" parameterType="INTEGER">
+    	select * from product where prodid = #{prodid} and current_timestamp() between begindate and enddate
+ 	</select> 
+	
+	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="prodid">
+ 		insert into product 
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name != null">
+ 				name,
+ 			</if>
+ 			<if test="price != null">
+ 				price,
+ 			</if>
+ 			<if test="description != null">
+ 				description,
+ 			</if>
+ 			<if test="begindate != null">
+ 				begindate,
+ 			</if>
+ 			<if test="enddate != null">
+ 				enddate,
+ 			</if>
+ 			<if test="stock != null">
+ 				stock,
+ 			</if>
+ 			<if test="categoryid != null">
+ 				categoryid,
+ 			</if>
+ 			<if test="createtime != null">
+ 				createtime,
+ 			</if>
+ 			<if test="updatetime != null">
+ 				updatetime,
+ 			</if>
+ 			<if test="picurl != null">
+ 				picurl
+ 			</if>
+ 		</trim>
+ 		values 
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="name != null">
+ 				#{name},
+ 			</if>
+ 			<if test="price != null">
+ 				#{price},
+ 			</if>
+ 			<if test="description != null">
+ 				#{description},
+ 			</if>
+ 			<if test="begindate != null">
+ 				#{begindate,jdbcType=TIMESTAMP},
+ 			</if>
+ 			<if test="enddate != null">
+ 				#{enddate,jdbcType=TIMESTAMP},
+ 			</if>
+ 			<if test="stock != null">
+ 				#{stock},
+ 			</if>
+ 			<if test="categoryid != null">
+ 				#{categoryid},
+ 			</if>
+ 			<if test="createtime != null">
+ 				#{createtime,jdbcType=TIMESTAMP},
+ 			</if>
+ 			<if test="updatetime != null">
+ 				#{updatetime,jdbcType=TIMESTAMP},
+ 			</if>
+ 			<if test="picurl != null">
+ 				#{picurl}
+ 			</if>
+ 		</trim>
+ 	</insert>
+ 	
+ 	<update id="deductProductStock">
+ 		update product 
+ 		set stock = stock - #{qty}
+ 		where prodid = #{prodid}
+ 		and stock > 0
+ 		and stock >= #{qty}
+ 	</update>
+ 	
+ 	<update id="updateProductByPrimaryKey" parameterType="Product">  
+	    UPDATE product  
+	    <trim prefix="SET" suffixOverrides=",">  
+	        <if test="name != null and name != '' ">  
+	            name = #{name},  
+	        </if>  
+	        <if test="price != null">  
+	            price = #{price},  
+	        </if>  
+	        <if test="description != null and description != '' ">  
+	            description = #{description},  
+	        </if> 
+	        <if test="begindate != null">  
+	            begindate = #{begindate,jdbcType=TIMESTAMP},  
+	        </if> 
+	        <if test="enddate != null">  
+	            enddate = #{enddate,jdbcType=TIMESTAMP},  
+	        </if> 
+	        <if test="stock != null">  
+	            stock = #{stock},
+	        </if>
+	        <if test="categoryid != null">  
+	            categoryid = #{categoryid}, 
+	        </if>
+	        <if test="createtime != null">  
+	            createtime = #{createtime,jdbcType=TIMESTAMP},  
+	        </if> 
+	        <if test="updatetime != null">  
+	            updatetime = #{updatetime,jdbcType=TIMESTAMP},  
+	        </if>
+	        <if test="picurl != null and picurl != '' ">  
+	            picurl = #{picurl}
+	        </if> 
+	    </trim>  
+	    WHERE prodid = #{prodid}  
+	</update>
+</mapper>

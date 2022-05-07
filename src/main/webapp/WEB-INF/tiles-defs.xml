@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	
+	<definition name="base.definition" template="/view/layout/layout_base.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="fbroot" value="/view/jsp/inc/facebook.jsp" />
+<!-- 		<put-attribute name="message" value="/rwd/pub/pub_message.jsp" /> -->
+		<put-attribute name="cssjs" value="/view/jsp/inc/cssjs.jsp" />
+		<put-attribute name="header" value="/view/jsp/inc/header.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/view/jsp/inc/footer.jsp" />
+	</definition>
+	
+	<definition name="empty.definition" template="/view/layout/layout_empty.jsp" />
+	
+	<!-- json 頁面 -->
+	<definition name="json.empty.page" extends="empty.definition">
+		<put-attribute name="content" value="/view/jsp/json.jsp" />
+	</definition>
+	
+	<!-- 首頁 -->
+	<definition name="index.page" extends="base.definition">
+		<put-attribute name="content" value="/index.jsp" />
+	</definition>
+	
+	<!-- Error Page -->
+	<definition name="error.base.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/error.jsp" />
+	</definition>
+	
+	<!-- 404 Not Found -->
+	<definition name="not.found.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/notFound.jsp" />
+	</definition>
+	
+	<!-- 註冊會員 -->
+	<definition name="member.register.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/register.jsp" />
+	</definition>
+	
+	<!-- 註冊會員完成 -->
+	<definition name="member.register.fin.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/register_fin.jsp" />
+	</definition>
+	
+	<!-- 登入 -->
+	<definition name="member.login.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/login.jsp" />
+	</definition>
+	
+	<!-- 商品列表頁 -->
+	<definition name="product.list.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/productList.jsp" />
+	</definition>
+
+	<!-- 商品頁 -->
+	<definition name="product.detail.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/product.jsp" />
+	</definition>
+	
+	<!-- 購物車頁 -->
+	<definition name="cart.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/cart.jsp" />
+	</definition>
+	
+	<!-- 結帳頁 -->
+	<definition name="checkout.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/checkout.jsp" />
+	</definition>
+	
+	<!-- 訂單完成頁 -->
+	<definition name="finish.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/finish.jsp" />
+	</definition>
+	
+	<!-- 訂單列表頁 -->
+	<definition name="order.list.page" extends="base.definition">
+		<put-attribute name="content" value="/view/jsp/orderList.jsp" />
+	</definition>
+	
+	<definition name="admin.definition" template="/view/layout/layout_admin.jsp">
+		<put-attribute name="cssjs" value="/view/jsp/inc/cssjs.jsp" />
+		<put-attribute name="header" value="/view/jsp/inc/header_admin.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/view/jsp/inc/footer_admin.jsp" />
+	</definition>
+	
+	<!-- 商品列表頁 -->
+	<definition name="admin.product.list.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_productList.jsp" />
+	</definition>
+	
+	<!-- 商品編輯頁 -->
+	<definition name="admin.product.edit.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_productEdit.jsp" />
+	</definition>
+	
+	<!-- 商品檢視頁 -->
+	<definition name="admin.product.detail.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_product.jsp" />
+	</definition>
+	
+	<!-- 新增商品頁 -->
+	<definition name="admin.product.new.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_productNew.jsp" />
+	</definition>
+	
+	<!-- 上傳excel頁 -->
+	<definition name="admin.product.upload.excel.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_uploadExcel.jsp" />
+	</definition>
+	
+	<!-- 展示excel頁 -->
+	<definition name="admin.product.show.excel.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_showExcel.jsp" />
+	</definition>
+	
+	<!-- excel完成頁 -->
+	<definition name="admin.product.finish.excel.page" extends="admin.definition">
+		<put-attribute name="content" value="/view/jsp/admin_excelFinish.jsp" />
+	</definition>
+</tiles-definitions>

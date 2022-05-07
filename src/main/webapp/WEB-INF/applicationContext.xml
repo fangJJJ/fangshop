@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 自動掃描dao層和bo層，納入spring的管理中 -->
+	<context:component-scan base-package="com.fang.dao" />
+	<context:component-scan base-package="com.fang.bo" />
+
+	<!-- 配置數據源(本地端) 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/shopdb" />
+		<property name="username" value="root" />
+		<property name="password" value="yxul4dj4_au4a83" />
+	</bean>
+	-->
+	
+	<!-- 配置數據源(在heroku上連結cleanDB mysql) -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="url" value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_11a538f4bbb1815"/>
+	    <property name="username" value="b389a7210735e1"/>
+	    <property name="password" value="5e90534d"/>
+	</bean>
+
+	<!-- 配置mybatis的sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自動掃描mapper.xml文件 -->
+		<property name="mapperLocations" value="classpath*:com/fang/mapper/*.xml"></property>
+		<!-- mybatis配置文件 -->
+		<property name="configLocation" value="/WEB-INF/mybatis-config.xml"></property>
+	</bean>
+	
+	<!-- DAO接口所在包名，Spring會自動查找其下的類 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.fang.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+	<!-- 事務管理 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- transaction manager advice -->
+    <tx:advice id="transactionManagerAdivice"
+        transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" isolation="READ_COMMITTED" propagation="REQUIRED"
+                rollback-for="java.lang.Exception" />
+        </tx:attributes>
+    </tx:advice>
+	
+	<tx:annotation-driven />
+	
+	<!-- 配置事務切面，bo會被管理 -->
+    <aop:config>
+        <aop:pointcut id="serviceOperation"
+                      expression="(execution(* com.fang.bo.*.*(..)))"/>
+        <aop:advisor advice-ref="transactionManagerAdivice" pointcut-ref="serviceOperation"/>
+    </aop:config>
+    
+    <!-- Factory -->
+	<bean name="socialFactory" class="com.fang.factory.SocialFactory"/>
+	
+	<!-- Service -->
+	<bean name="facebookImpl" class="com.fang.service.impl.FacebookImpl" />
+</beans>

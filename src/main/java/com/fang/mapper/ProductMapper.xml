@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fang.dao.ProductDAO">
 
-	<resultMap id="productResultMap" type="Product">
+	<resultMap id="productResultMap" type="com.fang.model.Product">
 		<result column="prodid" property="prodid" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="price" property="price" jdbcType="INTEGER" />

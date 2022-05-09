@@ -6,7 +6,7 @@
 
 <div class="col-sm-10 col-md-8 col-lg-8 m-auto">
 	<div class="card">
-		<form action="/shop/admin/newProduct.do" method="post" onsubmit="return saveNewProduct()">
+		<form action="${pageContext.request.contextPath}/admin/newProduct.do" method="post" onsubmit="return saveNewProduct()">
 			<div class="mb-3 mt-3 col-12 text-center">
 				<h3>新增商品</h3>
 			</div>

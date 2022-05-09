@@ -37,7 +37,7 @@ const vm = new Vue({
 				alert("購買數量必須大於1");
 				return;
 			}
-			axios.post('/shop/cart/ajaxAddCart.do?prodid='+this.prodid+'&qty='+this.qty)
+			axios.post('${pageContext.request.contextPath}/cart/ajaxAddCart.do?prodid='+this.prodid+'&qty='+this.qty)
 	 		.then(response => {
 	 	    	if(response.data.error){
 	 	    		alert(response.data.error);

@@ -69,12 +69,12 @@
 	<div class="col-6 mt-3">
 		<c:choose> 
 			<c:when test="${hasError}">  
-				<a href="/shop/admin/goUploadExcelPage.do">
+				<a href="${pageContext.request.contextPath}/admin/goUploadExcelPage.do">
 					<button class="btn btn-block productBtn">重新上傳檔案</button>
 				</a>
 			</c:when> 
 			<c:otherwise>  
-				<a href="/shop/admin/saveExcelProduct.do">
+				<a href="${pageContext.request.contextPath}/admin/saveExcelProduct.do">
 					<button class="btn btn-block productBtn">儲存</button>
 				</a>
 			</c:otherwise>

@@ -7,7 +7,7 @@
 			<h2 class="mt-5">Excel匯入商品</h2>
 	        <h3 class="mt-3">${info}</h3>
 	        <div class="mb-5"></div>
-	        <a href="/shop/admin/goProductList.do">
+	        <a href="${pageContext.request.contextPath}/admin/goProductList.do">
 				<button class="btn btn-block productBtn">查看商品列表</button>
 			</a>
 			<div class="mb-5"></div>

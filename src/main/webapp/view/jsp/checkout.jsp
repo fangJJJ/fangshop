@@ -36,7 +36,7 @@
         <div class="row">
         	<div class="col-md-6 col-lg-6 offset-md-1">
         		<h5 class="fw-bold mb-0 text-center">收件資料</h5>
-        		<form id="checkOutForm" method="post" action="/shop/cart/saveOrder.do">
+        		<form id="checkOutForm" method="post" action="${pageContext.request.contextPath}/cart/saveOrder.do">
         			<label class="form-label" for="typeName">Name</label>
         			<input type="text" id="typeName" class="form-control form-control-lg" name="receiverName"
                       v-model="receiverName" v-bind:value="receiverName"/>
@@ -75,7 +75,7 @@ new Vue({
 	},
 	methods:{
 		showCheckOut(){
-			axios.post('/shop/cart/showCheckOut.do')
+			axios.post('${pageContext.request.contextPath}/cart/showCheckOut.do')
 	 		.then(response => {
 	 			this.shoppingProductList = response.data.shoppingProductList;
 	 			this.totalAmount = response.data.totalAmount;
@@ -93,7 +93,7 @@ new Vue({
 	 	  	});
 		},
 		backToCartPage(){
-			window.location.href='/shop/cart/goCartPage.do';
+			window.location.href='${pageContext.request.contextPath}/cart/goCartPage.do';
 		},
 		saveOrder(){
 			let receiverName = $('#typeName').val();

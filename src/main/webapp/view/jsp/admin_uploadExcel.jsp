@@ -9,7 +9,7 @@
 		<span id="errMsg">${MESSAGE_ERROR}</span>
  	</div>
 	<div class="d-flex justify-content-center col-12">
-		<form method="post" id="uploadForm" enctype="multipart/form-data" action="/shop/admin/uploadExcel.do"
+		<form method="post" id="uploadForm" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/uploadExcel.do"
 			onsubmit="return uploadExcel()">
 		    <input type="file" name="file" id="formfile" accept=".xls,.xlsx" /> 
 		    <div style="text-align:center;">
@@ -19,7 +19,7 @@
 	</div>
 	<br>
 	<div class="d-flex justify-content-center col-12 mt-3">
-		<a href="/shop/admin/downloadExcel.do">
+		<a href="${pageContext.request.contextPath}/admin/downloadExcel.do">
 			<button class="btn btn-success" style="padding:6px 25px;">下載Excel範本</button>
 		</a>
 	</div>

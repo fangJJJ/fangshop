@@ -11,7 +11,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="/shop/view/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/style.css">
 
 <!-- js -->
 <script src='https://kit.fontawesome.com/a076d05399.js'

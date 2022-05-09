@@ -26,24 +26,14 @@
 	</bean>
 	-->
 	
-	<!-- 配置數據源(在heroku上連結cleanDB mysql)
+	<!-- 配置數據源(在heroku上連結cleanDB mysql) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 	    <property name="url" value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_11a538f4bbb1815?reconnect=true"/>
 	    <property name="username" value="b389a7210735e1"/>
 	    <property name="password" value="5e90534d"/>
 	</bean>
-	-->
 	
-	<bean class="java.net.URI" id="dbUrl">
-	    <constructor-arg value="#{systemEnvironment['CLEARDB_DATABASE_URL']}"/>
-	</bean>
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-	    <property name="url" value="#{ 'jdbc:mysql://' + @dbUrl.getHost() + @dbUrl.getPath() }"/>
-	    <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
-	    <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
-	</bean>
 
 	<!-- 配置mybatis的sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

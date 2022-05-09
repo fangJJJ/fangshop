@@ -8,7 +8,7 @@
 	<c:when test="${!empty product}">
 		<div class="col-sm-10 col-md-8 col-lg-8 m-auto">
 			<div class="card">
-				<form action="/shop/admin/editProduct.do" method="post" onsubmit="return saveEditProduct()">
+				<form action="${pageContext.request.contextPath}/admin/editProduct.do" method="post" onsubmit="return saveEditProduct()">
 					<div class="mb-3 mt-3 col-12 text-center">
 						<h3>商品編輯</h3>
 					</div>

@@ -70,7 +70,7 @@ const carVue = new Vue({
 	},
 	methods:{
 		showCart(){
-			axios.post('/shop/cart/showCart.do')
+			axios.post('${pageContext.request.contextPath}/cart/showCart.do')
 	 		.then(response => {
 	 			this.shoppingProductList = response.data.shoppingProductList;
 	 			this.totalAmount = response.data.totalAmount;
@@ -96,7 +96,7 @@ const carVue = new Vue({
 					break;
 			}
 			let newQty = selectNumber.value;
-			axios.post('/shop/cart/changeShoppingProductQty.do?prodid='+prodid+'&qty='+newQty)
+			axios.post('${pageContext.request.contextPath}/cart/changeShoppingProductQty.do?prodid='+prodid+'&qty='+newQty)
 	 		.then(response => {
 	 			if(response.data.error){
 	 				alert(response.data.error);
@@ -119,7 +119,7 @@ const carVue = new Vue({
 	 	  	});
 		},
 		deleteProduct(prodid){
-			axios.post('/shop/cart/deleteShoppingProduct.do?prodid='+prodid)
+			axios.post('${pageContext.request.contextPath}/cart/deleteShoppingProduct.do?prodid='+prodid)
 	 		.then(response => {
 	 			if(response.data.error){
 	 				alert(response.data.error);
@@ -141,7 +141,7 @@ const carVue = new Vue({
 	 	  	});
 		},
 		goCheckOut(){
-			window.location.href='/shop/cart/goCheckOutPage.do';
+			window.location.href='${pageContext.request.contextPath}/cart/goCheckOutPage.do';
 		}
 	}
 });

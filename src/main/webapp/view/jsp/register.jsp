@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<form action="/shop/member/register.do" method="post">
+<form action="${pageContext.request.contextPath}/member/register.do" method="post">
 	<div class="col-sm-10 col-md-8 col-lg-6 m-auto" >
 		<div class="card card-body d-flex align-items-center">
 			<h2 class="text-center mt-3">加入會員</h2>
@@ -28,7 +28,7 @@
 			<button type="submit" class="btn btn-block col-6 mt-4">送 出</button>
 			<span class="lead mt-4 mb-3">
 				Have An Account?
-				<a href="/shop/member/doLogin.do">Login</a>
+				<a href="${pageContext.request.contextPath}/member/doLogin.do">Login</a>
 			</span>
 		</div>
 	</div>

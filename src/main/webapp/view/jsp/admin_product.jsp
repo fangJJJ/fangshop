@@ -58,7 +58,7 @@
 					<textarea name="description" rows="6" cols="40" readonly>${product.description}</textarea>
 				</div>
 				<div class="col text-center">
-					<a class="btn btn-block productBtn col-4 mb-4" href="/shop/admin/goProductList.do">回商品列表頁</a>
+					<a class="btn btn-block productBtn col-4 mb-4" href="${pageContext.request.contextPath}/admin/goProductList.do">回商品列表頁</a>
 				</div>
 			</div>
 		</div>

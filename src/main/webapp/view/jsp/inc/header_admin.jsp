@@ -4,7 +4,7 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <header class="container-fluid shadow-sm">
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="/shop/admin/goProductList.do">
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/goProductList.do">
 			Fang<span>Shop</span>. 管理專區
 		</a>
 	</nav>

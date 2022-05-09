@@ -6,10 +6,10 @@
 <div class="row">
     <div class="products-header d-flex align-items-center justify-content-between col-12 row">
       	<div class="products-nav col-7">
-        	<a href="/shop/admin/goNewProductPage.do">
+        	<a href="${pageContext.request.contextPath}/admin/goNewProductPage.do">
 		    	<button type="button" class="btn btn-success">新增商品</button>
         	</a>
-        	<a href="/shop/admin/goUploadExcelPage.do">
+        	<a href="${pageContext.request.contextPath}/admin/goUploadExcelPage.do">
 		    	<button type="button" class="btn btn-success">Excel匯入商品</button>
         	</a>
       	</div>
@@ -30,7 +30,7 @@
 		<tbody>
 			<c:forEach var="product" items="${productList}">
 				<tr class="align-middle">
-					<td width="10%"><a href="/shop/admin/goProductPage.do?prodid=${product.prodid}">${product.prodid}</a></td>
+					<td width="10%"><a href="${pageContext.request.contextPath}/admin/goProductPage.do?prodid=${product.prodid}">${product.prodid}</a></td>
 					<td width="30%">${product.name}</td>
 					<td width="20%"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${product.begindate}" /></td>
 					<td width="20%"><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${product.enddate}" /></td>
@@ -54,10 +54,10 @@
 
 <script>
 function editProduct(prodid){
-	window.location.href='/shop/admin/goEditProductPage.do?prodid='+prodid;
+	window.location.href='${pageContext.request.contextPath}/admin/goEditProductPage.do?prodid='+prodid;
 }
 
 function getProductListByPage(pageNum){
-	window.location.href='/shop/admin/goProductList.do?pageNum='+pageNum;
+	window.location.href='${pageContext.request.contextPath}/admin/goProductList.do?pageNum='+pageNum;
 }
 </script>

@@ -268,5 +268,15 @@
 	            </executions>
 	        </plugin>
 		</plugins>
+		<resources>
+            <resource>
+                <directory>src/main/java</directory><!--所在的目錄-->
+                <includes><!--包括目錄下的.properties,.xml文件都會掃描到-->
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
 	</build>
 </project>

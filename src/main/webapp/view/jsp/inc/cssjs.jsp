@@ -14,8 +14,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/style.css">
 
 <!-- js -->
-<script src='https://kit.fontawesome.com/a076d05399.js'
-	crossorigin='anonymous'></script>
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" 
+	integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" 
+	crossorigin="anonymous"></script>
 <script
 	src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js'
 	integrity='sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p'

@@ -233,7 +233,7 @@ header.container{
     font-weight: 400;
 }
 
-.footer i{
+.footer .icon{
 	color: #a4aaaf; 
     margin: 0 18px 24px 0;
     -webkit-transition: .3s; 
@@ -241,10 +241,9 @@ header.container{
     -ms-transition:.3s; 
     -o-transition:.3s;
     transition: .3s;
-    font-size:24px;
 }
 
-.footer i:hover{
+.footer .icon:hover{
 	color: #e99c2e;
 }
 

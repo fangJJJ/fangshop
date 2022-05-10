@@ -5,7 +5,7 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <header class="container-fluid shadow-sm">
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="/shop/Index.do">
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/Index.do">
 			Fang<span>Shop</span>.
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"

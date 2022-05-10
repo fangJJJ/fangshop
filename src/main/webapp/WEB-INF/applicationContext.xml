@@ -29,7 +29,7 @@
 	<!-- 配置數據源(在heroku上連結cleanDB mysql) -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_11a538f4bbb1815?reconnect=true"/>
+	    <property name="url" value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_11a538f4bbb1815?reconnect=true&useUnicode=true&characterEncoding=UTF-8"/>
 	    <property name="username" value="b389a7210735e1"/>
 	    <property name="password" value="5e90534d"/>
 	</bean>

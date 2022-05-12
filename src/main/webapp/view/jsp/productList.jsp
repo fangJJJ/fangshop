@@ -4,9 +4,11 @@
 <div class="row" id="vueArea">
 	<div class="col-3">
 		<nav class="nav flex-column categoryNav">
-			<a class="nav-link" href="#" id="all" v-on:click="getProductListByCategory(0, 1)">all</a>
-			<div v-for="category in categoryList">
-		    	<a class="nav-link" href="#" v-on:click="getProductListByCategory(category.categoryid, 1)">{{category.name}}</a>
+			<div v-if="isCategoryListLoaded">
+				<a class="nav-link" href="#" id="all" v-on:click="getProductListByCategory(0, 1)">all</a>
+				<div v-for="category in categoryList">
+			    	<a class="nav-link" href="#" v-on:click="getProductListByCategory(category.categoryid, 1)">{{category.name}}</a>
+				</div>
 			</div>
 		</nav>
 	</div>
@@ -42,7 +44,8 @@ const vm = new Vue({
 		categoryList: [],
 		allProductList: [],
 		pages: 0,
-		categoryid: 0
+		categoryid: 0,
+		isCategoryListLoaded: false
 	},
 	mounted() {
 		this.getCategoryList();
@@ -64,6 +67,7 @@ const vm = new Vue({
 			axios.post('${pageContext.request.contextPath}/product/ajaxCategoryList.do')
 	 		.then(response => {
 	 	    	this.categoryList = response.data.result;
+	 	    	this.isCategoryListLoaded = true;
 	 	  	})
 	 	  	.catch(function (error) {
 	 	    	console.log(error);

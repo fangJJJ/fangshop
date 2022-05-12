@@ -187,7 +187,9 @@ public class ProductBOImpl implements ProductBO{
 		product.setBegindate(beginDate);
 		product.setEnddate(endDate);
 		//UI編輯斷行為\r\n，轉為<br>才可以在jsp顯示
-		product.setDescription(product.getDescription().replaceAll("\r\n", "<br>"));
+		if(StringUtils.isNotBlank(product.getDescription())) {
+			product.setDescription(product.getDescription().replaceAll("\r\n", "<br>"));
+		}
 		Category category = this.getCategory(product.getCategoryid());
 		if(category == null) {
 			errorMap.put("categoryid", "無此商品類別或已下架");
@@ -230,7 +232,6 @@ public class ProductBOImpl implements ProductBO{
 		boolean hasError = false;
 		if(products != null && products.size() > 0) {
 			for(BatchProduct batchProduct : products) {
-				//Map<String, String> errorMap = new LinkedHashMap<>();
 				Map<String, String> errorMap = BeanValidator.validate(batchProduct);
 				Timestamp beginDate = null;
 				Timestamp endDate = null;
@@ -283,7 +284,9 @@ public class ProductBOImpl implements ProductBO{
 		product.setName(batchProduct.getName());
 		product.setPrice(batchProduct.getPrice());
 		//Excel編輯斷行為\n，轉為<br>才可以在jsp顯示
-		product.setDescription(batchProduct.getDescription().replaceAll("\n", "<br>"));
+		if(StringUtils.isNotBlank(batchProduct.getDescription())) {
+			product.setDescription(batchProduct.getDescription().replaceAll("\n", "<br>"));
+		}
 		Timestamp beginDate = StringUtil.convertStringToTimestamp(batchProduct.getBegindate());
 		product.setBegindate(beginDate);
 		Timestamp endDate = StringUtil.convertStringToTimestamp(batchProduct.getEnddate());

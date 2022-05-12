@@ -10,9 +10,11 @@
         <hr class="my-4">
 		
 		<div v-if="!shoppingProductList || !shoppingProductList.length">
-			<div class="d-flex justify-content-center align-items-center mb-5">
-	        	<h3 class="fw-bold mb-5 pe-3 text-muted">購物車內無商品</h3>
-	        </div>
+			<div v-if="isCartLoaded">
+				<div class="d-flex justify-content-center align-items-center mb-5">
+		        	<h3 class="fw-bold mb-5 pe-3 text-muted">購物車內無商品</h3>
+		        </div>
+		    </div>
 		</div>
 		<div v-else>
 			<div v-for="shoppingProduct in shoppingProductList">
@@ -63,7 +65,8 @@ const carVue = new Vue({
 	el: "#vueCartArea",
 	data: {
 		shoppingProductList: [],
-		totalAmount: 0
+		totalAmount: 0,
+		isCartLoaded: false
 	},
 	mounted(){
 		this.showCart();
@@ -79,6 +82,7 @@ const carVue = new Vue({
 	 			}else{
 	 				$('#cartQty').empty();
 	 			}
+	 			this.isCartLoaded = true;
 	 	  	})
 	 	  	.catch(function (error) {
 	 	    	console.log(error);

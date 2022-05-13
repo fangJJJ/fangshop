@@ -5,7 +5,7 @@
 	<div class="mb-3 mt-3 col-12 text-center">
 		<h3>Excel匯入商品</h3>
 	</div>
-	<div class="mb-3 col-10">
+	<div class="mb-3 col-12 text-center text-danger">
 		<span id="errMsg">${MESSAGE_ERROR}</span>
  	</div>
 	<div class="d-flex justify-content-center col-12">

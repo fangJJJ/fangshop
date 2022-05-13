@@ -6,7 +6,7 @@
 	<div class="col-sm-10 col-md-8 col-lg-6 m-auto">
 		<div class="card card-body d-flex align-items-center">
 			<h2 class="text-center mt-3">登 入</h2>
-			<div class="mb-3 col-8">
+			<div class="mb-3 col-8 text-center text-danger">
 				<span id="errMsg">${MESSAGE_ERROR}</span>
 			</div>
 			<div class="mb-3 col-8">

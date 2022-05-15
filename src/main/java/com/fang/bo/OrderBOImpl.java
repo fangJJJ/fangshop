@@ -96,12 +96,6 @@ public class OrderBOImpl implements OrderBO{
 		return orderDAO.selectOrderByPrimaryKey(ordnum);
 	}
 	
-	public int insertOrder(Order order) {
-		orderDAO.insertOrder(order);
-		int ordnum = order.getOrdnum();
-		return ordnum;
-	}
-	
 	/**
 	 * 以會員編號取得訂單列表
 	 * @param memnum

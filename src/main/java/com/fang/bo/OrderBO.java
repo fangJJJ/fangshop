@@ -37,8 +37,6 @@ public interface OrderBO {
 	 */
 	public String getNextOrdid();
 	
-	public int insertOrder(Order order);
-	
 	/**
 	 * 以會員編號取得訂單列表
 	 * @param memnum

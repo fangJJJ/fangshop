@@ -57,8 +57,8 @@
 					<div>
 			      		<ul class="list-group">
 			        		<li class="list-group-item">收件者姓名: ${order.receiverName}</li>
-			        		<li class="list-group-item">收件者地址: ${order.receiverPhone}</li>
-			        		<li class="list-group-item">收件者手機: ${order.receiverAddress}</li>
+			        		<li class="list-group-item">收件者手機: ${order.receiverPhone}</li>
+			        		<li class="list-group-item">收件者地址: ${order.receiverAddress}</li>
 			      		</ul>
 			    	</div>
 				</div>
